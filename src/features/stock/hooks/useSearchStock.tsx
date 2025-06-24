@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BestMatch } from '../types';
 
 const API_KEY = process.env.PLATFORM_KEY; 
 
@@ -33,7 +34,7 @@ export function useStockSearch() {
         return;
       }
 
-      const parsed = data.bestMatches.map((match: any) => ({
+      const parsed = data.bestMatches.map((match: BestMatch) => ({
         symbol: match["1. symbol"],
         name: match["2. name"],
         region: match["4. region"],
@@ -41,8 +42,9 @@ export function useStockSearch() {
       }));
 
       setResults(parsed);
-    } catch (err) {
+    } catch (err: unknown) {
       setError("Failed to search for stocks.");
+      console.log((err as Error)?.message);
     } finally {
       setLoading(false);
     }

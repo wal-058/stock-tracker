@@ -1,4 +1,5 @@
-import { nunito } from "@/fonts";
+import { nunito } from "@/app/fonts";
+import Link from "next/link";
 
 export default function Header() {
     return (
@@ -8,8 +9,8 @@ export default function Header() {
                     STOCK TRACKER
                 </div>
                 <nav className="flex items-center space-x-3 sm:space-x-6 text-gray-700 text-sm font-medium">
-                    <a href="/" className="hover:text-blue-600 transition-colors underline">Tracker</a>
-                    <a href="/watchlist" className="hover:text-blue-600 transition-colors underline">Watchlist</a>
+                    <Link href="/" className="hover:text-blue-600 transition-colors underline">Tracker</Link>
+                    <Link href="/watchlist" className="hover:text-blue-600 transition-colors underline">Watchlist</Link>
                 </nav>
             </div>
         </header>

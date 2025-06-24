@@ -1,11 +1,13 @@
-import { geistMono } from "@/fonts";
+
+import { geistMono } from "@/app/fonts";
+import { StockItem } from "@/types/stock";
 
 interface StockItemProps {
     stock: StockItem;
     onToggleWatchlist: (symbol: string) => void;
     isWatched: boolean;
 }
-export default function StockItem({ stock, onToggleWatchlist, isWatched }: StockItemProps) {
+export default function StockItemDisplay({ stock, onToggleWatchlist, isWatched }: StockItemProps) {
     const {
         symbol,
         latestPrice,

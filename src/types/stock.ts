@@ -1,5 +1,4 @@
-
-interface StockItem {
+export interface StockItem {
     symbol: string,
     openPrice: string,
     highPrice: string,

@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import useWatchlist from "@/features/watchlist/hooks/useWatchlist";
 
-import StockItem from "@/components/stock/StockItem";
 import { mockStockQuotes } from "@/mock/stockQuotes";
+import StockItemDisplay from "@/components/stock/StockItem";
 
 export default function WatchlistContainer() {
     const { watchlist, toggle, isWatched } = useWatchlist();
@@ -21,7 +21,7 @@ export default function WatchlistContainer() {
     return (
         <div className="flex flex-col justify-center items-center">
             {watchlistStocks.map((stock) => (
-                <StockItem
+                <StockItemDisplay
                     key={stock.symbol}
                     stock={stock}
                     onToggleWatchlist={toggle}

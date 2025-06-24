@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { geistMono, geistSans } from "@/fonts";
+
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { geistMono, geistSans } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Stock Tracker",
@@ -17,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

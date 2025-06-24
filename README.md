@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stock Tracker
 
-## Getting Started
+## Made with
+- [Next.js 15+ (App Router)](https://nextjs.org/docs)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Alpha Vantage API](https://www.alphavantage.co/documentation/) *(mocked for development)*
 
-First, run the development server:
+- Docker (optional deployment)
+
+## Installation
+
+### 1. Clone the repo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/stock-tracker.git
+cd stock-tracker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Install dependencies
+```bash
+npm  install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Run with
 
-To learn more about Next.js, take a look at the following resources:
+### With Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm  run  dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+  
 
-## Deploy on Vercel
+## With Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Build the Docker image
+
+```bash
+docker  build  -t  stock-tracker  .
+
+```
+
+### 2. Run the container
+
+```bash
+docker  run  -p  3000:3000  stock-tracker
+```
+
+App will be available at [http://localhost:3000](http://localhost:3000)
+
+
+---
+
+  
+
+## Environment Variables
+
+To enable Alpha Vantage API (limited to 25 req/day on free plan), create a `.env` file:
+
+```env
+PLATFORM_KEY=your_alpha_vantage_api_key
+```
+
+---
+
+## Features
+
+- Search stocks by symbol or name
+- Add/remove to **watchlist** (stored in `localStorage`)
+- Fully client-hydrated interactions
+- Optimized for fast initial load using React Server Components
+
+---
+
+  
+
+##  Limitations
+
+- Uses mock data due to API rate limits
+- No persistent backend or authentication
+- Watchlist stored only locally 
+
+---
+
+## License
+
+MIT - [Waleed Ahmed](https://github.com/wal-058)

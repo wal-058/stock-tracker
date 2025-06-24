@@ -1,3 +1,4 @@
+import { StockItem } from '@/types/stock';
 import { useState, useEffect } from 'react';
 
 const API_KEY = process.env.PLATFORM_KEY;
@@ -41,8 +42,9 @@ export default function useFetchStockQuotes(symbols: string[]) {
                 }
 
                 setData(results);
-            } catch (err: any) {
+            } catch (err: unknown) {
                 setError('Failed to fetch stock quotes.');
+                console.log((err as Error)?.message);
             } finally {
                 setLoading(false);
             }

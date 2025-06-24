@@ -4,11 +4,11 @@ import { useMemo } from "react";
 // import useFetchStockQuotes from "../hooks/useFetchStockQuotes";
 import { mockStockQuotes } from "@/mock/stockQuotes";
 import useWatchlist from "@/features/watchlist/hooks/useWatchlist";
-import StockItem from "@/components/stock/StockItem";
+import StockItemDisplay from "@/components/stock/StockItem";
 
 export default function StockListContainer() {
     const predefinedStocks = useMemo(() => mockStockQuotes, []);
-    const { watchlist, toggle, isWatched } = useWatchlist();
+    const { toggle, isWatched } = useWatchlist();
 
     // API
     // const { data, loading, error } = useFetchStockQuotes(predefinedStocks);
@@ -22,7 +22,7 @@ export default function StockListContainer() {
     return (
         <div className="flex flex-col justify-center items-center">
             {data.map((stock) => (
-                <StockItem key={stock.symbol} stock={stock} onToggleWatchlist={toggle} isWatched={isWatched(stock.symbol)} />
+                <StockItemDisplay key={stock.symbol} stock={stock} onToggleWatchlist={toggle} isWatched={isWatched(stock.symbol)} />
             ))}
         </div>
     );
