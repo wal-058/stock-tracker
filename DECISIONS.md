@@ -1,9 +1,8 @@
 ## What trade-offs did you make and why?
 
-The API for Alpha Vantage is limited ls
-to **25 requests per day**. I tried using different keys but couldn’t bypass the limit. As a result:
+The API for Alpha Vantage is limited to **25 requests per day**. I tried using different keys but couldn’t bypass the limit. As a result:
 
-- I couldn’t implement caching strategies like **stale-while-revalidate (SWR)** since I needed predictable API responses were needed to validate caching behavior.
+- I couldn’t implement caching strategies like **stale-while-revalidate (SWR)** since I needed predictable API to validate caching behavior.
 - I had to rely on **mocked data** for the majority of development.
 - I **skipped input sanitation** (besides a simple `trim`) due to time constraints.
 - Error handling was limited to the **minimum acceptable level** for basic feedback.
