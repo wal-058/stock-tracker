@@ -2,6 +2,7 @@
 
 The API for Alpha Vantage was limited to **25 requests per day**. I tried using different keys but couldn’t bypass the limit. Then, I researched and found Finnhub that a significally higher limit. There are some remanents of that still in the code.
 
+Other than that:
 - I **skipped input sanitation** (besides a simple `trim`) due to time constraints.
 - Error handling was limited to the **minimum acceptable level** for basic feedback.
 
@@ -9,12 +10,10 @@ The API for Alpha Vantage was limited to **25 requests per day**. I tried using 
 
 ## What would you do with more time?
 
-- Integrate the **live Alpha Vantage API** if more test capacity was available.
 - Add **input sanitation** and use libraries like `react-toastify` for better user feedback.
 - Implement **pagination**, since loading all stocks repeatedly would be costly in terms of both **performance** and **API usage**.
 - Add **loading skeletons** to improve perceived performance.
-- Add **debouncing** to prevent excessive API hits during search.
-- Finally, implement **JWT-based authentication** so we could have users and store their personalized data like Watchlists.
+- Finally, a implement **JWT-based authentication** so we could have users and store their personalized data like Watchlists.
 
 ---
 
