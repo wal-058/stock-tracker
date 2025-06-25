@@ -1,30 +1,26 @@
 interface StockSearchBarProps {
     value: string;
     onChange: (val: string) => void;
-    onSubmit: () => void;
+    // onSubmit: () => void;
 }
 
-export default function StockSearchBar({ value, onChange, onSubmit }: StockSearchBarProps) {
+export default function StockSearchBar({ value, onChange }: StockSearchBarProps) {
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit();
+        // onSubmit();
     };
 
     return (
-        <form onSubmit={handleFormSubmit} className="flex items-center gap-2 mb-6">
+        <form onSubmit={handleFormSubmit}
+            className="flex items-center justify-center gap-2 mb-6 w-[90vw] max-w-3xl relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-2xl"
+        >
             <input
                 type="text"
                 placeholder="Search stock (e.g. AAPL, Tesla)"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full max-w-sm px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-800 focus:border-blue-800"
+                className="w-full pl-6 sm:pl-16 pr-6 py-4 bg-transparent text-white placeholder-slate-400 text-lg font-medium focus:outline-none focus:ring-0 border-none"
             />
-            <button
-                type="submit"
-                className="px-4 py-2 text-sm h-10 bg-blue-800 text-white rounded-md hover:bg-blue-900 hover:cursor-pointer transition-colors duration-200"
-            >
-                SEARCH
-            </button>
         </form>
     );
 }

@@ -9,3 +9,8 @@ export interface BestMatch {
   "8. currency": string;
   "9. matchScore": string;
 }
+
+export interface StockSearchResult {
+  name: string,
+  symbol: string,
+}

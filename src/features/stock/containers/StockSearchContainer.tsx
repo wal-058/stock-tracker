@@ -1,56 +1,43 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import StockSearchBar from "../components/StockSearch";
-// import { useStockSearch } from "../hooks/useSearchStock";
-import { mockStockQuotes } from "@/mock/stockQuotes";
-import StockItemDisplay from "@/components/stock/StockItem";
-import useWatchlist from "@/features/watchlist/hooks/useWatchlist";
+// import StockItemDisplay from "@/components/stock/StockItem";
+// import useWatchlist from "@/features/watchlist/hooks/useWatchlist";
+// import { useStockSearch } from "../hooks/useSearchStock"; 
+// import { mockStockQuotes } from "@/mock/stockQuotes";
+import SearchResultItemDisplay from "../components/SearchResutltem";
+import { useDebouncedStockSearch } from "../hooks/useDebouncedStockSearch";
+import { geistMono } from "@/app/fonts";
 
 export default function StockSearchContainer() {
     const [searchStock, setSearchStock] = useState('');
-    const [results, setResults] = useState(mockStockQuotes);
+    // const [showingMock, setShowingMock] = useState(true);
 
-    // const { results, loading, error, search } = useStockSearch();
-    const { toggle, isWatched } = useWatchlist();
+    const { results, loading, error } = useDebouncedStockSearch(searchStock);
 
-    const handleSubmit = () => {
-        const query = searchStock.trim().toLowerCase();
-
-        if (!query) {
-            setResults(mockStockQuotes);
-            return;
-        }
-
-        const filtered = mockStockQuotes.filter(stock =>
-            stock.symbol.toLowerCase().includes(query) ||
-            stock.symbol.toLowerCase() === query
-        );
-
-        setResults(filtered);
-    };
-
+    // const displayResults = showingMock ? mockStockQuotes : results;
+    const displayResults = results;
+    console.log("results:", results, results.length, loading, error);
 
     return (
-        <div className="flex flex-col justify-center items-center border-b-2 border-blue-800">
-            <StockSearchBar value={searchStock} onChange={(val) => setSearchStock(val)} onSubmit={handleSubmit} />
-            {results.length === 0 ? (
-                <p className="text-gray-500">No stocks found.</p>
-            ) : (
-                results.map(stock => (
-                    <StockItemDisplay key={stock.symbol} stock={stock} onToggleWatchlist={toggle} isWatched={isWatched(stock.symbol)} />
-                ))
-            )}
-            {/* {loading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>} */}
+        <div className="flex flex-col justify-center items-center bg-transparent">
+            <StockSearchBar
+                value={searchStock}
+                onChange={(val) => setSearchStock(val)}
+            />
 
-            {/* {results.map((stock) => (
-                <div key={stock.symbol}>
-                    <p>
-                        <strong>{stock.symbol}</strong> - {stock.name} ({stock.region}, {stock.currency})
-                    </p>
+            {loading && <p className="text-gray-500 mt-4">Loading...</p>}
+            {error && <p className="text-red-600 my-4">Error: {error}</p>}
+            {displayResults.length !== 0 &&
+                <h2 className={`${geistMono.className} text-lg font-bold text-white mb-4`}>SEARCH RESULTS</h2>
+            }
+
+            {displayResults.map((displayResult) => (
+                <div key={`${displayResult.name}-${displayResult.symbol}`} className="mb-4">
+                    <SearchResultItemDisplay stockSearchResult={displayResult} />
                 </div>
-            ))} */}
+            ))}
         </div>
-    )
+    );
 }

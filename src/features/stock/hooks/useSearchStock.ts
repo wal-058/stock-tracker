@@ -1,14 +1,7 @@
 import { useState } from 'react';
-import { BestMatch } from '../types';
+import { StockSearchResult } from '../types';
 
-const API_KEY = process.env.PLATFORM_KEY; 
-
-interface StockSearchResult {
-  symbol: string;
-  name: string;
-  region: string;
-  currency: string;
-}
+const API_KEY = process.env.PLATFORM_KEY;
 
 export function useStockSearch() {
   const [results, setResults] = useState<StockSearchResult[]>([]);
@@ -23,22 +16,20 @@ export function useStockSearch() {
 
     try {
       const res = await fetch(
-        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${API_KEY}`
+        `https://finnhub.io/api/v1/search?q=${encodeURIComponent(query)}&token=${API_KEY}`
       );
 
       const data = await res.json();
 
-      if (!data.bestMatches) {
+      if (!data.result || data.result.length === 0) {
         setResults([]);
         setError("No results found.");
         return;
       }
 
-      const parsed = data.bestMatches.map((match: BestMatch) => ({
-        symbol: match["1. symbol"],
-        name: match["2. name"],
-        region: match["4. region"],
-        currency: match["8. currency"],
+      const parsed = data.result.map((match: { description: string, symbol: string }) => ({
+        name: match.description,
+        symbol: match.symbol,
       }));
 
       setResults(parsed);
