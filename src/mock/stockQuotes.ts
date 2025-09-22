@@ -182,3 +182,16 @@ export const mockStockQuotes: StockItem[] = [
         priceChangePercent: "-0.93%",
     },
 ];
+
+export const dummyStockItem: StockItem = {
+    symbol: "N/A",
+    openPrice: "-",
+    highPrice: "-",
+    lowPrice: "-",
+    latestPrice: "-",
+    volume: "-",
+    lastestTradingDay: "-",
+    previousClosePrice: "-",
+    priceChange: "-",
+    priceChangePercent: "-",
+};

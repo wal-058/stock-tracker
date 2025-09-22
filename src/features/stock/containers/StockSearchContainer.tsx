@@ -12,11 +12,8 @@ import { geistMono } from "@/app/fonts";
 
 export default function StockSearchContainer() {
     const [searchStock, setSearchStock] = useState('');
-    // const [showingMock, setShowingMock] = useState(true);
-
     const { results, loading, error } = useDebouncedStockSearch(searchStock);
 
-    // const displayResults = showingMock ? mockStockQuotes : results;
     const displayResults = results;
     console.log("results:", results, results.length, loading, error);
 

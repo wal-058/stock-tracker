@@ -10,3 +10,7 @@ export interface StockItem {
     priceChange: string,
     priceChangePercent: string,
 }
+
+export type FetchQuoteResult =
+    | { type: 'success', quote: StockItem, }
+    | { type: 'error', statusCode: number, message: string }

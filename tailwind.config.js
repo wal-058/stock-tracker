@@ -5,7 +5,7 @@ module.exports = {
     theme: {
         extend: {
             height: {
-                'content-height': 'calc(100vh - 8rem)',
+                'content-height': 'calc(100vh-8rem)',
             },
         },
     },
