@@ -8,12 +8,13 @@ import useStockQuotes from "@/hooks/useStockQuotes";
 import { dummyStockItem } from "@/mock/stockQuotes";
 
 export default function StockListContainer() {
-    const predefinedStocks = useMemo(() => ['AAPL', 'GOOGL', 'MSFT'], [])
+    const predefinedStocks = useMemo(() => ['AAPL','GOOGL','MSFT','AMZN','TSLA','META','NFLX','NVDA','AMD','INTC'], []);
 
     const { toggle, isWatched } = useWatchlist();
 
     // API
     const fetchedQuotes = useStockQuotes(predefinedStocks);
+    console.log('quotes in container', fetchedQuotes);
 
     // MOCK
     // const data = predefinedStocks;
@@ -28,15 +29,18 @@ export default function StockListContainer() {
                 <div key={stock.symbol}>
                     {stock.isLoading && <div><p>Loading {stock.symbol}</p></div>}
                     {stock.error && <div><p>Error loading {stock.symbol}</p></div>}
-                    {stock.data?.type === 'success' && (
+                    {stock.data && (
                         <div className="mb-4">
-                            <StockItemDisplay stock={stock.data.quote} onToggleWatchlist={toggle} isWatched={isWatched(stock.data.quote.symbol)} />
+                            <StockItemDisplay stock={stock.data} onToggleWatchlist={toggle} isWatched={isWatched(stock.symbol)} />
                         </div>
                     )}
-                    {stock.data?.type === 'error' && (
+                    {stock.error && (
                         <div key={stock.symbol} className="mb-4">
                             <StockItemDisplay stock={dummyStockItem} onToggleWatchlist={toggle} isWatched={isWatched(stock.symbol)} />
                         </div>
+                    )}
+                    {!stock.isLoading && !stock.data && !stock.error && (
+                        <p>No data for {stock.symbol}</p>
                     )}
                 </div>
             ))}

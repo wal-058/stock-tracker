@@ -23,10 +23,10 @@ export default function WatchlistContent({ watchlist, toggle, isWatched }: Watch
 
             {fetchedQuotes?.map((stock) => (
                 <div key={stock.symbol}>
-                    {stock.data?.type === 'error' && <>Error</>}
-                    {stock.data?.type === 'success' && <div key={stock.symbol} className="mb-4">
+                    {stock.error && <>Error</>}
+                    {stock.data && <div key={stock.symbol} className="mb-4">
                         <StockItemDisplay
-                            stock={stock.data.quote}
+                            stock={stock.data}
                             onToggleWatchlist={toggle}
                             isWatched={isWatched(stock.symbol)}
                         />

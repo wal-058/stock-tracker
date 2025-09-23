@@ -2,10 +2,6 @@
 
 import { useState } from "react";
 import StockSearchBar from "../components/StockSearch";
-// import StockItemDisplay from "@/components/stock/StockItem";
-// import useWatchlist from "@/features/watchlist/hooks/useWatchlist";
-// import { useStockSearch } from "../hooks/useSearchStock"; 
-// import { mockStockQuotes } from "@/mock/stockQuotes";
 import SearchResultItemDisplay from "../components/SearchResutltem";
 import { useDebouncedStockSearch } from "../hooks/useDebouncedStockSearch";
 import { geistMono } from "@/app/fonts";

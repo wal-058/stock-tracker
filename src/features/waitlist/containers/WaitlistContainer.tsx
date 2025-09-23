@@ -7,7 +7,7 @@ export default function WaitlistContainer() {
     const [input, setInput] = useState("");
 
     const handleInputChange = (value: string) => {
-        setInput(prev => value);
+        setInput(value);
     }
 
     const handleJoinWaitlist = () => {
